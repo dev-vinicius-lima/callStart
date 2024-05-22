@@ -1,8 +1,9 @@
 import { PrismaAdapter } from '@auth/prisma-adapter'
-import GoogleProvider from 'next-auth/providers/google'
 import { AuthOptions } from 'next-auth'
+import GoogleProvider from 'next-auth/providers/google'
 import prismaClient from './prisma'
 
+// Omit<AdapterUser, 'id'>
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prismaClient),
   providers: [
@@ -12,11 +13,13 @@ export const authOptions: AuthOptions = {
     }),
   ],
   callbacks: {
-    async session({ session, token, user }) {
-      session.user = { ...session.user, id: user.id } as {
-        id: string
-        name: string
-        email: string
+    async session({ session, user }) {
+      if (user && user.id) {
+        session.user = { ...session.user, id: user.id } as {
+          id: string
+          name: string
+          email: string
+        }
       }
       return session
     },

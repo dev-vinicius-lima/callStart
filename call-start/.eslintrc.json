@@ -1,6 +1,21 @@
 {
   "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "next",
     "@rocketseat/eslint-config/next", 
     "next/core-web-vitals"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "react-hooks"
   ]
 }
+
+
+
+
+
