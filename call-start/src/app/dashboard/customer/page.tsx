@@ -1,22 +1,23 @@
 import { Container } from '@/components/Container'
-import React from 'react'
-import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
+import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
+import React from 'react'
 
-const Dashboard = async () => {
+const Customer = async () => {
   const session = await getServerSession(authOptions)
   if (!session || !session.user) {
     redirect('/')
   }
-
   return (
-    <div>
-      <Container>
-        <h1>Página Dashboard</h1>
-      </Container>
-    </div>
+    <Container>
+      <main>
+        <div>
+          <h1>Meus clientes</h1>
+        </div>
+      </main>
+    </Container>
   )
 }
 
-export default Dashboard
+export default Customer

@@ -2,7 +2,6 @@
 import Link from 'next/link'
 import { FiLoader, FiLock, FiLogOut, FiUser } from 'react-icons/fi'
 import { signIn, signOut, useSession } from 'next-auth/react'
-import Image from 'next/image'
 
 export const Header = () => {
   const { status, data } = useSession()
