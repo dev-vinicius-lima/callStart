@@ -3,7 +3,6 @@ import { AuthOptions } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import prismaClient from './prisma'
 
-// Omit<AdapterUser, 'id'>
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prismaClient),
   providers: [
