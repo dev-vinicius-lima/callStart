@@ -37,6 +37,11 @@ const Customer = async () => {
             <CardCustomer key={customer.id} customer={customer} />
           ))}
         </section>
+        {customers.length === 0 && (
+          <h2 className="text-center mt-3 font-bold">
+            Você ainda não possui cliente.
+          </h2>
+        )}
       </main>
     </Container>
   )

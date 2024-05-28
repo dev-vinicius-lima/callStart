@@ -2,8 +2,10 @@
 import { CustomerProps } from '@/utils/customer.type'
 import React from 'react'
 import { api } from '@/lib/api'
+import { useRouter } from 'next/navigation'
 
 const CardCustomer = ({ customer }: { customer: CustomerProps }) => {
+  const router = useRouter()
   const handleDeleteCustomer = async () => {
     try {
       // deletar o cliente
@@ -12,7 +14,9 @@ const CardCustomer = ({ customer }: { customer: CustomerProps }) => {
           id: customer.id,
         },
       })
-      console.log(response.data, 'deletado!')
+
+      console.log(response.data)
+      router.refresh()
     } catch (error) {
       console.log(error)
     }

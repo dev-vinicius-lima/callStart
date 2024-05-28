@@ -16,6 +16,19 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ error: 'missing id' }, { status: 400 })
   }
 
+  const findTickets = await prisma.ticket.findFirst({
+    where: {
+      customerId: id as string,
+    },
+  })
+
+  if (findTickets) {
+    return NextResponse.json(
+      { error: 'failed to delete customer' },
+      { status: 400 },
+    )
+  }
+
   try {
     await prisma.customer.delete({
       where: {
