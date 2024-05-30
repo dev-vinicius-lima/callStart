@@ -57,6 +57,11 @@ const Dashboard = async () => {
             ))}
           </tbody>
         </table>
+        {tickets.length === 0 && (
+          <h1 className="text-gray-600 text-center text-lg mt-11">
+            Nenhum Ticket aberto foi encontrado!
+          </h1>
+        )}
       </main>
     </Container>
   )
