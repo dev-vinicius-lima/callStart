@@ -4,6 +4,7 @@ import prisma from '@/lib/prisma'
 import { getServerSession } from 'next-auth'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
+import { NextResponse } from 'next/server'
 
 const NewTicket = async () => {
   const session = await getServerSession(authOptions)
@@ -17,14 +18,30 @@ const NewTicket = async () => {
     },
   })
 
-  const handleRegisterTicket = async ({ formData }: { formData: FormData }) => {
+  const handleRegisterTicket = async (formData: FormData) => {
     'use server'
     const name = formData.get('name')
     const description = formData.get('description')
     const customerId = formData.get('customer')
-    console.log(name)
-    console.log(description)
-    console.log(customerId)
+
+    if (!name || !description || !customerId) {
+      return NextResponse.json(
+        { error: 'Preencha todos os campos' },
+        { status: 400 },
+      )
+    }
+
+    await prisma.ticket.create({
+      data: {
+        name: name as string,
+        description: description as string,
+        customerId: customerId as string,
+        status: 'ABERTO',
+        userId: session?.user.id,
+      },
+    })
+
+    redirect('/dashboard')
   }
 
   return (
