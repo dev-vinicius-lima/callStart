@@ -21,8 +21,10 @@ const Dashboard = async () => {
     include: {
       customer: true,
     },
+    orderBy: {
+      created_at: 'asc',
+    },
   })
-  console.log(tickets)
 
   return (
     <Container>
