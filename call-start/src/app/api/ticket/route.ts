@@ -34,3 +34,30 @@ export async function PATCH(request: Request) {
     console.log(error)
   }
 }
+
+export async function POST(request: Request) {
+  const { customerId, description, name } = await request.json()
+
+  if (!customerId || !description || !name) {
+    return NextResponse.json(
+      { error: 'Preencha todos os campos' },
+      { status: 400 },
+    )
+  }
+  try {
+    await prisma.ticket.create({
+      data: {
+        name,
+        description,
+        customerId,
+        status: 'ABERTO',
+      },
+    })
+    return NextResponse.json({ message: 'Chamado aberto com sucesso!' })
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'failed to create ticket' },
+      { status: 400 },
+    )
+  }
+}

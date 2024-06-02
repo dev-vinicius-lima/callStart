@@ -21,29 +21,34 @@ const Customer = async () => {
   })
 
   return (
-    <Container>
-      <main className="mt-9 mb-3">
-        <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold">Meus clientes</h1>
-          <Link
-            href="/dashboard/customer/new"
-            className="bg-blue-500 hover:bg-blue-700 duration-200 px-4 py-1 rounded text-white"
-          >
-            Novo cliente
-          </Link>
-        </div>
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
-          {customers.map((customer) => (
-            <CardCustomer key={customer.id} customer={customer} />
-          ))}
-        </section>
-        {customers.length === 0 && (
-          <h2 className="text-center mt-3 font-bold">
-            Você ainda não possui cliente.
-          </h2>
-        )}
-      </main>
-    </Container>
+    <>
+      <head>
+        <title>Clientes - Call Start</title>
+      </head>
+      <Container>
+        <main className="mt-9 mb-3">
+          <div className="flex items-center justify-between">
+            <h1 className="text-3xl font-bold">Meus clientes</h1>
+            <Link
+              href="/dashboard/customer/new"
+              className="bg-blue-500 hover:bg-blue-700 duration-200 px-4 py-1 rounded text-white"
+            >
+              Novo cliente
+            </Link>
+          </div>
+          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
+            {customers.map((customer) => (
+              <CardCustomer key={customer.id} customer={customer} />
+            ))}
+          </section>
+          {customers.length === 0 && (
+            <h2 className="text-center mt-3 font-bold">
+              Você ainda não possui cliente.
+            </h2>
+          )}
+        </main>
+      </Container>
+    </>
   )
 }
 

@@ -12,20 +12,25 @@ const NewCustomer = async () => {
     redirect('/')
   }
   return (
-    <Container>
-      <main className="flex flex-col mt-9 mb-2">
-        <div className="flex items-center gap-3">
-          <Link
-            href="/dashboard/customer"
-            className="bg-gray-900 px-4 py-1 text-white rounded"
-          >
-            Voltar
-          </Link>
-          <h1 className="text-3xl font-bold">Novo Cliente</h1>
-        </div>
-      </main>
-      <NewCustomerForm userId={session.user.id} />
-    </Container>
+    <>
+      <head>
+        <title>Cadastro de cliente - Call Start</title>
+      </head>
+      <Container>
+        <main className="flex flex-col mt-9 mb-2">
+          <div className="flex items-center gap-3">
+            <Link
+              href="/dashboard/customer"
+              className="bg-gray-900 px-4 py-1 text-white rounded"
+            >
+              Voltar
+            </Link>
+            <h1 className="text-3xl font-bold">Novo Cliente</h1>
+          </div>
+        </main>
+        <NewCustomerForm userId={session.user.id} />
+      </Container>
+    </>
   )
 }
 
